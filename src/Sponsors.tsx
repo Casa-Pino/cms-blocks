@@ -11,9 +11,11 @@ interface ISponsor {
 export default async function Sponsors({ classData, categorie, imageStaticUrl, type = 'all' }: ISponsor) {
   const taxo = await getAllSponsors(categorie || '');
 
+  console.log(taxo);
+
   if (!taxo) return;
 
-  if (taxo?.meta?.sponsorships?.length == 0) return;
+  if (!taxo?.meta?.sponsorships) return;
 
   return (
     <div className={classNames('relative my-4', classData)}>
@@ -83,7 +85,7 @@ export default async function Sponsors({ classData, categorie, imageStaticUrl, t
 async function getAllSponsors(categorie: string) {
   let sponsors = await fetch(
     `https://${process.env.HERMES_S3_BUCKET}.s3.amazonaws.com/${process.env.HERMES_S3_PREFIX}/json/routes${
-      categorie.startsWith('/category') ? '' : '/category'
+      categorie.startsWith('/category') ? '/' : '/category/'
     }${categorie.endsWith('/') ? categorie.slice(0, categorie.length - 1) : categorie}.json`,
   );
 
@@ -91,6 +93,7 @@ async function getAllSponsors(categorie: string) {
     try {
       return await sponsors.json();
     } catch (error) {
+      console.log(error);
       return;
     }
   }

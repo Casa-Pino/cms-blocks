@@ -28,6 +28,7 @@ export interface IPostViewProps {
   postContentClass?: string;
   buttonClass?: string;
   imageStaticUrl?: string;
+  isHeightFull?: boolean;
 }
 export interface ICreditProps {
   id: number;
@@ -51,6 +52,7 @@ export default function PostView({
   postContentClass,
   buttonClass,
   imageStaticUrl,
+  isHeightFull = false,
 }: IPostViewProps) {
   let [isDocument, setDocument] = useState(false);
   let [liked, setLiked] = useState(false);
@@ -116,7 +118,7 @@ export default function PostView({
         <div
           className="mb-5"
           style={{
-            height: 'calc(100dvh * 0.4)',
+            height: !isHeightFull ? 'calc(100dvh * 0.4)' : 'auto',
             width: '100%',
             overflow: 'hidden',
             position: 'relative',
@@ -125,14 +127,16 @@ export default function PostView({
           <ImageComponent
             src={thumbnail || ''}
             alt=""
-            width={1000}
+            width={!isHeightFull ? 1000 : 0}
             imageSizeW={1080}
-            height={454}
+            // fill={isHeightFull}
+            height={!isHeightFull ? 454 : 0}
+            sizes="100vw"
             style={{
               width: '100%',
-              height: '100%',
+              height: 'auto',
               objectFit: 'cover',
-              objectPosition: 'center',
+              objectPosition: 'contain',
             }}
             onError={(e) => {
               e.currentTarget.onerror = null;
