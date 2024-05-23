@@ -63,7 +63,6 @@ export default function BannerSlide(props: IBannerSlide) {
 
   return (
     <div className="relative flex h-screen max-h-[600px] w-full items-center justify-center overflow-hidden rounded-xl">
-      <div>{duration}</div>
       <div
         className="absolute z-30 flex h-full w-full justify-between"
         style={{
@@ -77,7 +76,10 @@ export default function BannerSlide(props: IBannerSlide) {
             setDuration(0);
           }}
         ></div>
-        <a href="/" className="relative flex h-full w-full flex-col items-start justify-end">
+        <a
+          href={`${props.posts[imageIndex].uri}`}
+          className="relative flex h-full w-full flex-col items-start justify-end"
+        >
           <div className="absolute bottom-4 h-full max-h-[190px] max-w-xl sm:max-h-40">
             <div className="text-xl font-bold text-white drop-shadow-[0_2px_1px_rgba(0,0,0,0.25)]">
               {props.posts[imageIndex].category}
