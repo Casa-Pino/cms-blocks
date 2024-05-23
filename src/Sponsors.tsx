@@ -11,8 +11,6 @@ interface ISponsor {
 export default async function Sponsors({ classData, categorie, imageStaticUrl, type = 'all' }: ISponsor) {
   const taxo = await getAllSponsors(categorie || '');
 
-  console.log(taxo);
-
   if (!taxo) return;
 
   if (!taxo?.meta?.sponsorships) return;
