@@ -16,6 +16,11 @@ jobs:
       - run: npm install
       - run: npm test
 
+  version-verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: cycjimmy/semantic-release-action@v4.1.0
+
   publish-gpr:
     needs: build
     runs-on: ubuntu-latest
