@@ -9,6 +9,9 @@ module.exports = {
       screens: {
         'sm-mw': { max: '639px' },
       },
+      backgroundImage: {
+        image: 'linear-gradient(360deg, rgba(0,0,0,0.7022003859616397) 10%, rgba(0,0,0,0) 45%);',
+      },
     },
   },
   plugins: [],

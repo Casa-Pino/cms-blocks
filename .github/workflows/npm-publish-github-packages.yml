@@ -17,6 +17,7 @@ jobs:
       - run: npm test
 
   version-verify:
+    needs: build
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -27,7 +28,7 @@ jobs:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
   publish-gpr:
-    needs: build
+    needs: version-verify
     runs-on: ubuntu-latest
     permissions:
       contents: read

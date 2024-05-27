@@ -3,6 +3,7 @@
 import React, { FC, useEffect, useState } from 'react';
 import { wrap } from 'popmotion';
 import { AnimatePresence, motion } from 'framer-motion';
+import ImageComponent from './Image';
 
 interface IBannerSlide {
   posts: {
@@ -34,6 +35,7 @@ export default function BannerSlide(props: IBannerSlide) {
   const imageIndex = wrap(0, props.posts.length, page);
   const [duration, setDuration] = useState(0);
   const [paused, setPaused] = useState(false);
+  const [isMoving, setIsMoving] = useState(false);
 
   useEffect(() => {
     let timerId;
@@ -62,76 +64,11 @@ export default function BannerSlide(props: IBannerSlide) {
   };
 
   return (
-    <div className="relative flex h-screen max-h-[600px] w-full items-center justify-center overflow-hidden rounded-xl">
-      <div
-        className="absolute z-30 flex h-full w-full justify-between"
-        style={{
-          backgroundColor: '#00000056',
-        }}
-      >
-        <div
-          className="h-full w-1/12"
-          onClick={() => {
-            paginate(-1);
-            setDuration(0);
-          }}
-        ></div>
-        <a
-          href={`${props.posts[imageIndex].uri}`}
-          className="relative flex h-full w-full flex-col items-start justify-end"
-        >
-          <div className="absolute bottom-4 h-full max-h-[190px] max-w-xl sm:max-h-40">
-            <div className="text-xl font-bold text-white drop-shadow-[0_2px_1px_rgba(0,0,0,0.25)]">
-              {props.posts[imageIndex].category}
-            </div>
-            <div className="my-4"></div>
-            <div className="max-h-[90px] overflow-hidden overflow-ellipsis text-2xl font-bold text-white drop-shadow-[0_2px_1px_rgba(0,0,0)]">
-              {props.posts[imageIndex].title.length > 75
-                ? `${props.posts[imageIndex].title.substring(0, 55) + '...'}`
-                : props.posts[imageIndex].title}
-            </div>
-            <div className="my-4"></div>
-            <div className="flex gap-2">
-              {props.posts.map((x, i) => (
-                <div
-                  className="flex overflow-hidden transition-all"
-                  style={{
-                    borderRadius: 10,
-                    width: `calc(100% / ${props.posts.length})`,
-                    height: '10px',
-                    backgroundColor: '#ffffff30',
-                  }}
-                >
-                  {imageIndex == i || imageIndex > i ? (
-                    <div
-                      className="transition-all"
-                      style={{
-                        width: imageIndex == i ? `calc((100% * ${duration}) / 10)` : '100%',
-                        height: '100%',
-                        backgroundColor: 'white',
-                      }}
-                    ></div>
-                  ) : (
-                    <></>
-                  )}
-                </div>
-              ))}
-            </div>
-          </div>
-        </a>
-        <div
-          className="h-full w-1/12"
-          onClick={() => {
-            paginate(1);
-            setDuration(0);
-          }}
-        ></div>
-      </div>
+    <div className="click-tm group relative flex h-screen max-h-[600px] w-full cursor-pointer items-center justify-center overflow-hidden rounded-xl">
       <AnimatePresence initial={false} custom={direction}>
-        <motion.img
-          className="absolute top-0 left-0 right-0 h-full w-full"
+        <motion.div
+          className=" absolute top-0 left-0 right-0 h-full w-full"
           key={page}
-          src={props.posts[imageIndex].thumbnail}
           custom={direction}
           variants={{
             enter: (direction: number) => {
@@ -169,7 +106,31 @@ export default function BannerSlide(props: IBannerSlide) {
           drag="x"
           dragConstraints={{ left: 0, right: 0 }}
           dragElastic={1}
-          onDragEnd={(e, { offset, velocity }) => {
+          onClick={(e) => {
+            // console.log(isMoving);
+            if (isMoving) return;
+            var rect = (e.target as any).getBoundingClientRect();
+            var x = e.clientX - rect.left;
+            var y = e.clientY - rect.top;
+
+            if (x <= 80) {
+              paginate(-1);
+              setDuration(0);
+            } else if (x >= e.currentTarget.offsetWidth - 80) {
+              paginate(1);
+              setDuration(0);
+            } else if (x >= 50 && x <= e.currentTarget.offsetWidth - 80) {
+              window.open(props.posts[imageIndex].uri, '_self');
+            }
+          }}
+          onDrag={(e: any) => {
+            e.target.style.cursor = 'grabbing';
+            setIsMoving(true);
+          }}
+          onDragEnter={() => {
+            setIsMoving(true);
+          }}
+          onDragEnd={(e: any, { offset, velocity }) => {
             const swipe = swipePower(offset.x, velocity.x);
 
             if (swipe < -swipeConfidenceThreshold) {
@@ -179,8 +140,56 @@ export default function BannerSlide(props: IBannerSlide) {
               paginate(-1);
               setDuration(0);
             }
+            setIsMoving(false);
+            e.target.style.cursor = 'pointer';
           }}
-        />
+        >
+          <div className="absolute z-30 flex h-full w-full justify-between">
+            <div className="absolute bottom-2 flex h-full max-w-xl flex-col justify-end px-4 pb-2 sm:max-h-40">
+              <div className="text-xl font-bold text-white drop-shadow-[0_2px_1px_rgba(0,0,0,0.25)]">
+                {props.posts[imageIndex].category}
+              </div>
+              <div className="my-2"></div>
+              <div className=" overflow-ellipsis text-2xl font-bold text-white drop-shadow-[0_2px_1px_rgba(0,0,0)]">
+                {props.posts[imageIndex].title}
+              </div>
+              <div className="my-2"></div>
+              <div className="flex gap-2">
+                {props.posts.map((x, i) => (
+                  <div
+                    className="flex overflow-hidden transition-all"
+                    style={{
+                      borderRadius: 10,
+                      width: `calc(100% / ${props.posts.length})`,
+                      height: '10px',
+                      backgroundColor: '#ffffff30',
+                    }}
+                  >
+                    {imageIndex == i || imageIndex > i ? (
+                      <div
+                        className="transition-all"
+                        style={{
+                          width: imageIndex == i ? `calc((100% * ${duration}) / 10)` : '100%',
+                          height: '100%',
+                          backgroundColor: 'white',
+                        }}
+                      ></div>
+                    ) : (
+                      <></>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+          <div className="absolute left-0 right-0 top-0 z-20 h-full w-full bg-image"></div>
+          <ImageComponent
+            src={props.posts[imageIndex].thumbnail}
+            alt={''}
+            fill
+            className="absolute top-0 left-0 right-0 z-10 h-full w-full object-cover transition-all duration-700 group-hover:scale-105"
+          ></ImageComponent>
+        </motion.div>
       </AnimatePresence>
     </div>
   );
