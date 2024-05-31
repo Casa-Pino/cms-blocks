@@ -31,6 +31,7 @@ const swipePower = (offset: number, velocity: number) => {
 };
 
 export default function BannerSlide(props: IBannerSlide) {
+  if (props.posts.length === 0 || props.posts == undefined) return;
   const [[page, direction], setPage] = useState([0, 0]);
   const imageIndex = wrap(0, props.posts.length, page);
   const [duration, setDuration] = useState(0);
@@ -43,11 +44,11 @@ export default function BannerSlide(props: IBannerSlide) {
       timerId = setInterval(() => {
         setDuration((prev) => prev + 1);
       }, 1000);
-      console.log(timerId);
+      // console.log(timerId);
     }
 
     return function cleanup() {
-      console.log(`Clearing ${timerId}`);
+      // console.log(`Clearing ${timerId}`);
       clearInterval(timerId);
     };
   }, [paused]);
@@ -188,7 +189,7 @@ export default function BannerSlide(props: IBannerSlide) {
             alt={''}
             fill
             className="absolute top-0 left-0 right-0 z-10 h-full w-full object-cover transition-all duration-700 group-hover:scale-105"
-            imageSizeW={1080} 
+            imageSizeW={1080}
           ></ImageComponent>
         </motion.div>
       </AnimatePresence>
