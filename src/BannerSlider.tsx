@@ -188,6 +188,7 @@ export default function BannerSlide(props: IBannerSlide) {
             alt={''}
             fill
             className="absolute top-0 left-0 right-0 z-10 h-full w-full object-cover transition-all duration-700 group-hover:scale-105"
+            imageSizeW={1080} 
           ></ImageComponent>
         </motion.div>
       </AnimatePresence>
