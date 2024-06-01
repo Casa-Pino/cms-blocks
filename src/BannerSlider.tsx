@@ -6,7 +6,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import ImageComponent from './Image';
 
 interface IBannerSlide {
-  posts: {
+  posts?: {
     id: number;
     externalId: number;
     uri: string;
@@ -31,9 +31,9 @@ const swipePower = (offset: number, velocity: number) => {
 };
 
 export default function BannerSlide(props: IBannerSlide) {
-  if (props.posts.length === 0 || props.posts == undefined) return;
+  if (props?.posts.length === 0 || props?.posts == undefined) return;
   const [[page, direction], setPage] = useState([0, 0]);
-  const imageIndex = wrap(0, props.posts.length, page);
+  const imageIndex = wrap(0, props?.posts.length, page);
   const [duration, setDuration] = useState(0);
   const [paused, setPaused] = useState(false);
   const [isMoving, setIsMoving] = useState(false);
@@ -121,7 +121,7 @@ export default function BannerSlide(props: IBannerSlide) {
               paginate(1);
               setDuration(0);
             } else if (x >= 50 && x <= e.currentTarget.offsetWidth - 80) {
-              window.open(props.posts[imageIndex].uri, '_self');
+              window.open(props?.posts[imageIndex].uri, '_self');
             }
           }}
           onDrag={(e: any) => {
@@ -148,20 +148,20 @@ export default function BannerSlide(props: IBannerSlide) {
           <div className="absolute z-30 flex h-full w-full justify-between">
             <div className="absolute bottom-2 flex h-full max-w-xl flex-col justify-end px-4 pb-2 sm:max-h-40">
               <div className="text-xl font-bold text-white drop-shadow-[0_2px_1px_rgba(0,0,0,0.25)]">
-                {props.posts[imageIndex].category}
+                {props?.posts[imageIndex].category}
               </div>
               <div className="my-2"></div>
               <div className=" overflow-ellipsis text-2xl font-bold text-white drop-shadow-[0_2px_1px_rgba(0,0,0)]">
-                {props.posts[imageIndex].title}
+                {props?.posts[imageIndex].title}
               </div>
               <div className="my-2"></div>
               <div className="flex gap-2">
-                {props.posts.map((x, i) => (
+                {props?.posts.map((x, i) => (
                   <div
                     className="flex overflow-hidden transition-all"
                     style={{
                       borderRadius: 10,
-                      width: `calc(100% / ${props.posts.length})`,
+                      width: `calc(100% / ${props?.posts.length})`,
                       height: '10px',
                       backgroundColor: '#ffffff30',
                     }}
@@ -185,7 +185,7 @@ export default function BannerSlide(props: IBannerSlide) {
           </div>
           <div className="absolute left-0 right-0 top-0 z-20 h-full w-full bg-image"></div>
           <ImageComponent
-            src={props.posts[imageIndex].thumbnail}
+            src={props?.posts[imageIndex].thumbnail}
             alt={''}
             fill
             className="absolute top-0 left-0 right-0 z-10 h-full w-full object-cover transition-all duration-700 group-hover:scale-105"
