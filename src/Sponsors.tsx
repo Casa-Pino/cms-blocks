@@ -83,7 +83,7 @@ export default async function Sponsors({ classData, categorie, imageStaticUrl, t
 async function getAllSponsors(categorie: string) {
   let sponsors = await fetch(
     `https://${process.env.HERMES_S3_BUCKET}.s3.amazonaws.com/${process.env.HERMES_S3_PREFIX}/json/routes${
-      categorie.startsWith('/category') ? '/' : '/category/'
+      categorie.startsWith('/category') ? '' : '/category/'
     }${categorie.endsWith('/') ? categorie.slice(0, categorie.length - 1) : categorie}.json`,
   );
 
