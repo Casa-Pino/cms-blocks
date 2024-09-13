@@ -107,23 +107,23 @@ export default function BannerSlide(props: IBannerSlide) {
           drag="x"
           dragConstraints={{ left: 0, right: 0 }}
           dragElastic={1}
-          onClick={(e) => {
-            // console.log(isMoving);
-            if (isMoving) return;
-            var rect = (e.target as any).getBoundingClientRect();
-            var x = e.clientX - rect.left;
-            var y = e.clientY - rect.top;
+          // onClick={(e) => {
+          //   // console.log(isMoving);
+          //   if (isMoving) return;
+          //   var rect = (e.target as any).getBoundingClientRect();
+          //   var x = e.clientX - rect.left;
+          //   var y = e.clientY - rect.top;
 
-            if (x <= 80) {
-              paginate(-1);
-              setDuration(0);
-            } else if (x >= e.currentTarget.offsetWidth - 80) {
-              paginate(1);
-              setDuration(0);
-            } else if (x >= 50 && x <= e.currentTarget.offsetWidth - 80) {
-              window.open(props?.posts[imageIndex].uri, '_self');
-            }
-          }}
+          //   if (x <= 80) {
+          //     paginate(-1);
+          //     setDuration(0);
+          //   } else if (x >= e.currentTarget.offsetWidth - 80) {
+          //     paginate(1);
+          //     setDuration(0);
+          //   } else if (x >= 50 && x <= e.currentTarget.offsetWidth - 80) {
+          //     window.open(props?.posts[imageIndex].uri, '_self');
+          //   }
+          // }}
           onDrag={(e: any) => {
             e.target.style.cursor = 'grabbing';
             setIsMoving(true);
@@ -145,44 +145,6 @@ export default function BannerSlide(props: IBannerSlide) {
             e.target.style.cursor = 'pointer';
           }}
         >
-          <div className="absolute z-30 flex h-full w-full justify-between">
-            <div className="absolute bottom-2 flex h-full max-w-xl flex-col justify-end px-4 pb-2 sm:max-h-40">
-              <div className="text-xl font-bold text-white drop-shadow-[0_2px_1px_rgba(0,0,0,0.25)]">
-                {props?.posts[imageIndex].category}
-              </div>
-              <div className="my-2"></div>
-              <div className=" overflow-ellipsis text-2xl font-bold text-white drop-shadow-[0_2px_1px_rgba(0,0,0)]">
-                {props?.posts[imageIndex].title}
-              </div>
-              <div className="my-2"></div>
-              <div className="flex gap-2">
-                {props?.posts.map((x, i) => (
-                  <div
-                    className="flex overflow-hidden transition-all"
-                    style={{
-                      borderRadius: 10,
-                      width: `calc(100% / ${props?.posts.length})`,
-                      height: '10px',
-                      backgroundColor: '#ffffff30',
-                    }}
-                  >
-                    {imageIndex == i || imageIndex > i ? (
-                      <div
-                        className="transition-all"
-                        style={{
-                          width: imageIndex == i ? `calc((100% * ${duration}) / 10)` : '100%',
-                          height: '100%',
-                          backgroundColor: 'white',
-                        }}
-                      ></div>
-                    ) : (
-                      <></>
-                    )}
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
           <div className="absolute left-0 right-0 top-0 z-20 h-full w-full bg-image"></div>
           <ImageComponent
             src={props?.posts[imageIndex].thumbnail}
@@ -193,6 +155,101 @@ export default function BannerSlide(props: IBannerSlide) {
           ></ImageComponent>
         </motion.div>
       </AnimatePresence>
+      <div className="absolute z-50 flex h-full w-full">
+        <div
+          className="flex h-full w-1/6 items-center justify-center"
+          onClick={() => {
+            paginate(-1);
+            setDuration(0);
+          }}
+        >
+          <svg
+            width="46"
+            height="46"
+            fill="none"
+            stroke="#fff"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+            className="drop-shadow-lg md:hidden"
+          >
+            <path d="M19 12H5"></path>
+            <path d="m12 19-7-7 7-7"></path>
+          </svg>
+        </div>
+        <a href={props?.posts[imageIndex].uri} className="h-full w-4/6"></a>
+        <div
+          className="flex h-full w-1/6 items-center justify-center"
+          onClick={() => {
+            paginate(1);
+            setDuration(0);
+          }}
+        >
+          <svg
+            width="46"
+            height="46"
+            fill="none"
+            stroke="#fff"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+            className="drop-shadow-lg md:hidden"
+          >
+            <path d="M5 12h14"></path>
+            <path d="m12 5 7 7-7 7"></path>
+          </svg>
+        </div>
+        <div className="absolute bottom-2 flex h-full max-w-xl flex-col justify-end px-4 pb-2 sm:max-h-40">
+          <a
+            href={props?.posts[imageIndex].uri}
+            className="text-xl font-bold text-white drop-shadow-[0_2px_1px_rgba(0,0,0,0.25)]"
+          >
+            {props?.posts[imageIndex].category}
+          </a>
+          <div className="my-2"></div>
+          <a
+            href={props?.posts[imageIndex].uri}
+            className=" overflow-ellipsis text-2xl font-bold text-white drop-shadow-[0_2px_1px_rgba(0,0,0)]"
+          >
+            {props?.posts[imageIndex].title}
+          </a>
+          <div className="my-2"></div>
+          <div className="flex gap-2">
+            {props?.posts.map((x, i) => (
+              <div
+                className="flex overflow-hidden transition-all"
+                onClick={() => {
+                  setPage([i, i > page ? 1 : -1]);
+                  setDuration(0);
+                }}
+                style={{
+                  borderRadius: 10,
+                  width: `calc(100% / ${props?.posts.length})`,
+                  height: '10px',
+                  backgroundColor: '#ffffff30',
+                }}
+              >
+                {imageIndex == i || imageIndex > i ? (
+                  <div
+                    className="transition-all"
+                    style={{
+                      width: imageIndex == i ? `calc((100% * ${duration}) / 10)` : '100%',
+                      height: '100%',
+                      backgroundColor: 'white',
+                    }}
+                  ></div>
+                ) : (
+                  <></>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
