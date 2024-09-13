@@ -23,6 +23,7 @@ interface IBannerSlide {
     createdAt: string;
     showThumbnail: boolean;
   }[];
+  staticUrl?: string;
 }
 
 const swipeConfidenceThreshold = 10000;
@@ -147,6 +148,7 @@ export default function BannerSlide(props: IBannerSlide) {
         >
           <div className="absolute left-0 right-0 top-0 z-20 h-full w-full bg-image"></div>
           <ImageComponent
+            imageStaticUrl={props.staticUrl}
             src={props?.posts[imageIndex].thumbnail}
             alt={''}
             fill
