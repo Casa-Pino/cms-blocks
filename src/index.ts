@@ -10,6 +10,7 @@ import CategoriesHeader from './CategoriesHeader';
 import BannerView from './BannerView';
 import Sponsors from './Sponsors';
 import BannerSlide from './BannerSlider';
+import CarrouselSliderTop from './CarrouselSliderTop';
 
 export {
   EnquenteView,
@@ -24,4 +25,5 @@ export {
   BannerView,
   Sponsors,
   BannerSlide,
+  CarrouselSliderTop,
 };
