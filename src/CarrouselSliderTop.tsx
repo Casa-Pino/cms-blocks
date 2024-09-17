@@ -41,7 +41,7 @@ function CarrouselItem({ link, color, name, imageErrorUrl, imageUrl, staticUrl }
 
 export default function CarrouselSliderTop({ items }: { items: ICarrouselItem[] }) {
   return (
-    <div className="flex w-full items-center gap-6 overflow-x-auto pl-2">
+    <div className="flex w-full items-start gap-6 overflow-x-auto pl-2">
       {items.map((x, y) => {
         return <CarrouselItem key={y} {...x} />;
       })}
