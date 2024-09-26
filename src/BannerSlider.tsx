@@ -12,7 +12,7 @@ interface IBannerSlide {
     uri: string;
     title: string;
     slug: string;
-    thumbnail: string;
+    thumbnail?: string;
     category: string;
     credit: {
       id: number;
@@ -149,7 +149,7 @@ export default function BannerSlide(props: IBannerSlide) {
           <div className="absolute left-0 right-0 top-0 z-20 h-full w-full bg-image"></div>
           <ImageComponent
             imageStaticUrl={props.staticUrl}
-            src={props?.posts[imageIndex].thumbnail}
+            src={props?.posts[imageIndex].thumbnail || ''}
             alt={''}
             fill
             className="absolute top-0 left-0 right-0 z-10 h-full w-full object-cover transition-all duration-700 group-hover:scale-105"
