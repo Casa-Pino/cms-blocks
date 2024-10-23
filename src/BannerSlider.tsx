@@ -205,7 +205,7 @@ export default function BannerSlide(props: IBannerSlide) {
             <path d="m12 5 7 7-7 7"></path>
           </svg>
         </div>
-        <div className="absolute bottom-2 flex h-full max-w-xl flex-col justify-end px-4 pb-2 sm:max-h-40">
+        <div className="absolute bottom-2 flex max-w-xl flex-col justify-end px-4 pb-2 sm:max-h-40">
           <a
             href={props?.posts[imageIndex].uri}
             className="text-xl font-bold text-white drop-shadow-[0_2px_1px_rgba(0,0,0,0.25)]"
