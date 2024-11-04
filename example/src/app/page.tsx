@@ -1,6 +1,6 @@
 'use client';
 
-import { BannerSlide, CarrouselSliderTop, LastNews } from '../../../lib';
+import { BannerSlide, CarrouselSliderTop, InstagramEmbed, LastNews, TiktokEmbed } from '../../../lib';
 // import CarrouselSliderTop from '../../../lib/CarrouselSliderTop';
 const a = [
   {
@@ -151,29 +151,7 @@ const a = [
 export default function Home() {
   return (
     <div className="w-full max-w-[661px]">
-      <div className="">
-        <LastNews
-          horizontal={false}
-          lastNews={a as any}
-          displayFeaturedImage
-          addLinkToFeaturedImage
-          featuredImageAlign="left"
-          sendLike={async (e: any) => {}}
-          Logo={
-            <img
-              src="/assets/icons/logo.ico"
-              style={{
-                height: '100%',
-                width: '100%',
-                objectFit: 'contain',
-                objectPosition: 'center',
-              }}
-            ></img>
-          }
-          displayAuthor
-          errorSrc="/assets/icons/logo.ico"
-        ></LastNews>
-      </div>
+      <InstagramEmbed url="https://www.instagram.com/reel/DB7IHYwPfMf/"></InstagramEmbed>
     </div>
   );
 }

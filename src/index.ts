@@ -11,6 +11,8 @@ import BannerView from './BannerView';
 import Sponsors from './Sponsors';
 import BannerSlide from './BannerSlider';
 import CarrouselSliderTop from './CarrouselSliderTop';
+import TiktokEmbed from './TiktokEmbed';
+import InstagramEmbed from './InstagramEmbed';
 
 export {
   EnquenteView,
@@ -25,5 +27,7 @@ export {
   BannerView,
   Sponsors,
   BannerSlide,
+  TiktokEmbed,
   CarrouselSliderTop,
+  InstagramEmbed
 };
