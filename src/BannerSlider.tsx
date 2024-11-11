@@ -25,7 +25,6 @@ interface IBannerSlide {
     showThumbnail: boolean;
   }[];
   staticUrl?: string;
-  isMobile?: boolean;
 }
 
 const swipeConfidenceThreshold = 10000;
@@ -149,18 +148,25 @@ export default function BannerSlide(props: IBannerSlide) {
           }}
         >
           <div className="absolute left-0 right-0 top-0 z-20 h-full w-full bg-image"></div>
-          <ImageComponent
-            imageStaticUrl={props.staticUrl}
-            src={
-              !!props?.posts[imageIndex].mobile && !!props.isMobile
-                ? (props?.posts[imageIndex].mobile || props?.posts[imageIndex].thumbnail || '')
-                : (props?.posts[imageIndex].thumbnail || '')}
-            alt={''}
-            fill
-            className={`absolute top-0 left-0 right-0 z-10 h-full w-full ${!!props?.posts[imageIndex].mobile ? 'object-contain' : 'object-cover'} transition-all duration-700 group-hover:scale-105`}
-            imageSizeW={!!props?.posts[imageIndex].mobile && !!props.isMobile ? undefined : 1080}
-            imageSizeH={!!props?.posts[imageIndex].mobile && !!props.isMobile ? 1080 : undefined}
-          ></ImageComponent>
+          {
+            !!props?.posts[imageIndex].mobile ?
+              <ImageComponent
+                imageStaticUrl={props.staticUrl}
+                src={props?.posts[imageIndex].mobile || props?.posts[imageIndex].thumbnail || ''}
+                alt={''}
+                fill
+                className="imageMobileSlider absolute top-0 left-0 right-0 z-10 h-full w-full transition-all duration-700 group-hover:scale-105"
+                imageSizeH={1080}
+              ></ImageComponent> :
+              <ImageComponent
+                imageStaticUrl={props.staticUrl}
+                src={props?.posts[imageIndex].thumbnail || ''}
+                alt={''}
+                fill
+                className="imageDesktopSlider absolute top-0 left-0 right-0 z-10 h-full w-full transition-all duration-700 group-hover:scale-105"
+                imageSizeW={1080}
+              ></ImageComponent>
+          }
         </motion.div>
       </AnimatePresence>
       <div className="absolute z-50 flex h-full w-full">
