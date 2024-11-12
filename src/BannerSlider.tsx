@@ -37,7 +37,7 @@ export default function BannerSlide(props: IBannerSlide) {
   const [[page, direction], setPage] = useState([0, 0]);
   const imageIndex = wrap(0, props?.posts.length, page);
   const [duration, setDuration] = useState(0);
-  const [paused, setPaused] = useState(true);
+  const [paused, setPaused] = useState(false);
   const [isMoving, setIsMoving] = useState(false);
 
   useEffect(() => {
