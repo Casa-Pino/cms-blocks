@@ -27,7 +27,7 @@ interface IBannerSlide {
   staticUrl?: string;
 }
 
-const swipeConfidenceThreshold = 150000;
+const swipeConfidenceThreshold = 10000;
 const swipePower = (offset: number, velocity: number) => {
   return Math.abs(offset) * velocity;
 };
@@ -37,7 +37,7 @@ export default function BannerSlide(props: IBannerSlide) {
   const [[page, direction], setPage] = useState([0, 0]);
   const imageIndex = wrap(0, props?.posts.length, page);
   const [duration, setDuration] = useState(0);
-  const [paused, setPaused] = useState(false);
+  const [paused, setPaused] = useState(true);
   const [isMoving, setIsMoving] = useState(false);
 
   useEffect(() => {
@@ -148,24 +148,22 @@ export default function BannerSlide(props: IBannerSlide) {
           }}
         >
           <div className="absolute left-0 right-0 top-0 z-20 h-full w-full bg-image"></div>
-          {
-            !!props?.posts[imageIndex].mobile ?
-              <ImageComponent
-                imageStaticUrl={props.staticUrl}
-                src={props?.posts[imageIndex].mobile || props?.posts[imageIndex].thumbnail || ''}
-                alt={''}
-                className="imageMobileSlider absolute top-0 left-0 right-0 z-10 h-full w-full transition-all duration-700 group-hover:scale-105"
-                imageSizeH={1080}
-              ></ImageComponent> :
-              <ImageComponent
-                imageStaticUrl={props.staticUrl}
-                src={props?.posts[imageIndex].thumbnail || ''}
-                alt={''}
-                fill
-                className="imageDesktopSlider absolute top-0 left-0 right-0 z-10 h-full w-full transition-all duration-700 group-hover:scale-105"
-                imageSizeW={1080}
-              ></ImageComponent>
-          }
+          <ImageComponent
+            imageStaticUrl={props.staticUrl}
+            src={props?.posts[imageIndex].mobile || props?.posts[imageIndex].thumbnail || ''}
+            alt={''}
+            fill
+            className="md:hidden absolute top-0 left-0 right-0 z-10 h-full w-full object-contain transition-all duration-700 group-hover:scale-105"
+            imageSizeH={1080}
+          ></ImageComponent>
+          <ImageComponent
+            imageStaticUrl={props.staticUrl}
+            src={props?.posts[imageIndex].thumbnail || ''}
+            alt={''}
+            fill
+            className="hidden md:block absolute top-0 left-0 right-0 z-10 h-full w-full transition-all duration-700 group-hover:scale-105"
+            imageSizeW={1080}
+          ></ImageComponent>
         </motion.div>
       </AnimatePresence>
       <div className="absolute z-50 flex h-full w-full">
@@ -231,7 +229,37 @@ export default function BannerSlide(props: IBannerSlide) {
             {props?.posts[imageIndex].title}
           </a>
           <div className="my-2"></div>
-          <div className="flex gap-2">
+          <div style={{ width: 'calc(100vw - 32px)' }} className="md:hidden flex justify-center gap-2">
+            {props?.posts.map((x, i) => (
+              <div
+                className="flex overflow-hidden transition-all"
+                onClick={() => {
+                  setPage([i, i > page ? 1 : -1]);
+                  setDuration(0);
+                }}
+                style={{
+                  borderRadius: 10,
+                  width: 10,
+                  height: '10px',
+                  backgroundColor: '#ffffff30',
+                }}
+              >
+                {imageIndex == i || imageIndex > i ? (
+                  <div
+                    className="transition-all"
+                    style={{
+                      width: imageIndex == i ? `calc((100% * ${duration}) / 10)` : '100%',
+                      height: '100%',
+                      backgroundColor: 'white',
+                    }}
+                  ></div>
+                ) : (
+                  <></>
+                )}
+              </div>
+            ))}
+          </div>
+          <div className="hidden md:block flex gap-2">
             {props?.posts.map((x, i) => (
               <div
                 className="flex overflow-hidden transition-all"
