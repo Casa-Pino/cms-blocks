@@ -259,7 +259,7 @@ export default function BannerSlide(props: IBannerSlide) {
               </div>
             ))}
           </div>
-          <div className="hidden md:block flex gap-2">
+          <div className="hidden md:flex flex gap-2">
             {props?.posts.map((x, i) => (
               <div
                 className="flex overflow-hidden transition-all"
