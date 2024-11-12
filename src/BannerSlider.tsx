@@ -27,7 +27,7 @@ interface IBannerSlide {
   staticUrl?: string;
 }
 
-const swipeConfidenceThreshold = 10000;
+const swipeConfidenceThreshold = 150000;
 const swipePower = (offset: number, velocity: number) => {
   return Math.abs(offset) * velocity;
 };
@@ -154,7 +154,6 @@ export default function BannerSlide(props: IBannerSlide) {
                 imageStaticUrl={props.staticUrl}
                 src={props?.posts[imageIndex].mobile || props?.posts[imageIndex].thumbnail || ''}
                 alt={''}
-                fill
                 className="imageMobileSlider absolute top-0 left-0 right-0 z-10 h-full w-full transition-all duration-700 group-hover:scale-105"
                 imageSizeH={1080}
               ></ImageComponent> :
