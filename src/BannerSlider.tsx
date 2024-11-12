@@ -13,7 +13,7 @@ interface IBannerSlide {
     title: string;
     slug: string;
     thumbnail?: string;
-    mobile?: string;
+    mobileImage?: string;
     category: string;
     credit: {
       id: number;
@@ -150,18 +150,19 @@ export default function BannerSlide(props: IBannerSlide) {
           <div className="absolute left-0 right-0 top-0 z-20 h-full w-full bg-image"></div>
           <ImageComponent
             imageStaticUrl={props.staticUrl}
-            src={props?.posts[imageIndex].mobile || props?.posts[imageIndex].thumbnail || ''}
+            src={props?.posts[imageIndex].mobileImage || props?.posts[imageIndex].thumbnail || ''}
             alt={''}
             fill
-            className="md:hidden absolute top-0 left-0 right-0 z-10 h-full w-full object-contain transition-all duration-700 group-hover:scale-105"
-            imageSizeH={1080}
+            className={`"md:hidden absolute top-0 left-0 right-0 z-10 h-full w-full ${!!props?.posts[imageIndex].mobileImage ? 'object-contain' : 'object-cover'} transition-all duration-700 group-hover:scale-105"`}
+            imageSizeH={!!props?.posts[imageIndex].mobileImage ? 1080 : undefined}
+            imageSizeW={!!props?.posts[imageIndex].mobileImage ? undefined : 1080}
           ></ImageComponent>
           <ImageComponent
             imageStaticUrl={props.staticUrl}
             src={props?.posts[imageIndex].thumbnail || ''}
             alt={''}
             fill
-            className="hidden md:block absolute top-0 left-0 right-0 z-10 h-full w-full transition-all duration-700 group-hover:scale-105"
+            className="hidden md:block absolute top-0 left-0 right-0 z-10 h-full w-full object-cover transition-all duration-700 group-hover:scale-105"
             imageSizeW={1080}
           ></ImageComponent>
         </motion.div>
