@@ -37,7 +37,7 @@ export default function BannerSlide(props: IBannerSlide) {
   const [[page, direction], setPage] = useState([0, 0]);
   const imageIndex = wrap(0, props?.posts.length, page);
   const [duration, setDuration] = useState(0);
-  const [paused, setPaused] = useState(true);
+  const [paused, setPaused] = useState(false);
   const [isMoving, setIsMoving] = useState(false);
   const isMobile = props?.posts.some(x => !!x.mobileImage);
 
@@ -69,7 +69,7 @@ export default function BannerSlide(props: IBannerSlide) {
 
   return (
     <>
-      <div className={`${isMobile ? 'md:hidden' : 'hidden'} relative flex flex-col w-screen px-4 justify-center overflow-hidden my-8`}>
+      <div className={`${isMobile ? 'md:hidden' : 'hidden'} h-[450px] relative flex flex-col w-screen px-4 items-center justify-start overflow-hidden mt-8`}>
         <AnimatePresence initial={false} custom={direction}>
           <motion.div
             className=""
@@ -149,12 +149,12 @@ export default function BannerSlide(props: IBannerSlide) {
               e.target.style.cursor = 'pointer';
             }}
           >
-            <div className="flex items-center">
+            <div className="flex items-center w-[calc(100vw-16px)]">
               <div
-                className="absolute z-10 w-[calc(100%-32px)] flex flex-row justify-between"
+                className="absolute z-10 left-[8px] w-[calc(100vw-16px)] mt-[276px] flex flex-row justify-between"
               >
                 <div
-                  className="text-white"
+                  className="text-white bg-gray-500/50 rounded-full"
                   onClick={() => {
                     paginate(-1);
                     setDuration(0);
@@ -165,7 +165,7 @@ export default function BannerSlide(props: IBannerSlide) {
                   </svg>
                 </div>
                 <div
-                  className="text-white"
+                  className="text-white bg-gray-500/50 rounded-full"
                   onClick={() => {
                     paginate(1);
                     setDuration(0);
@@ -182,13 +182,13 @@ export default function BannerSlide(props: IBannerSlide) {
                 alt=""
                 width={640}
                 height={480}
-                className="relative h-full w-full object-cover transition-all duration-700 rounded-lg"
+                className="absolute mt-[300px] h-[300px] left-0 w-full object-contain transition-all duration-700 rounded-md"
               ></ImageComponent>
             </div>
           </motion.div>
         </AnimatePresence>
-        <div className="my-4 flex h-full w-full overflow-hidden">
-          <div>
+        <div className="mt-[300px] flex h-[150px] w-full overflow-hidden">
+          <div className='flex flex-col justify-end'>
             <a
               href={props?.posts[imageIndex].uri}
             >
@@ -222,7 +222,7 @@ export default function BannerSlide(props: IBannerSlide) {
                       style={{
                         width: imageIndex == i ? `calc((100% * ${duration}) / 10)` : '100%',
                         height: '100%',
-                        backgroundColor: 'black',
+                        backgroundColor: 'silver',
                       }}
                     ></div>
                   ) : (
