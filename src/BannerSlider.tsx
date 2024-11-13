@@ -149,7 +149,7 @@ export default function BannerSlide(props: IBannerSlide) {
               e.target.style.cursor = 'pointer';
             }}
           >
-            <div className="flex items-center w-[calc(100vw-16px)]">
+            <div className="flex items-center w-[100vw]">
               <div
                 className="absolute z-10 left-0 w-[100vw] mt-[276px] flex flex-row justify-between"
               >
