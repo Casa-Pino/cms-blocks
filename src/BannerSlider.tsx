@@ -37,7 +37,7 @@ export default function BannerSlide(props: IBannerSlide) {
   const [[page, direction], setPage] = useState([0, 0]);
   const imageIndex = wrap(0, props?.posts.length, page);
   const [duration, setDuration] = useState(0);
-  const [paused, setPaused] = useState(true);
+  const [paused, setPaused] = useState(false);
   const [isMoving, setIsMoving] = useState(false);
   const isMobile = props?.posts.some(x => !!x.mobileImage);
 
@@ -149,9 +149,9 @@ export default function BannerSlide(props: IBannerSlide) {
               e.target.style.cursor = 'pointer';
             }}
           >
-            <div className="flex items-center w-[100vw]">
+            <div className="flex items-center w-[calc(100vw-32px)]">
               <div
-                className="absolute z-10 left-0 w-[100vw] mt-[156px] flex flex-row justify-between"
+                className="absolute z-10 left-0 w-[calc(100vw-32px)] mt-[156px] flex flex-row justify-between"
               >
                 <div
                   className="text-white bg-gray-500/50 rounded-full"
@@ -182,12 +182,12 @@ export default function BannerSlide(props: IBannerSlide) {
                 alt=""
                 width={1080}
                 height={566}
-                className="absolute mt-[180px] h-[180px] left-0 w-full object-contain transition-all duration-700 rounded-md"
+                className="absolute mt-[180px] h-[180px] left-0 w-[calc(100vw-32px)] object-contain transition-all duration-700 rounded-md"
               ></ImageComponent>
             </div>
           </motion.div>
         </AnimatePresence>
-        <div className="mt-[180px] flex h-[150px] w-full overflow-hidden">
+        <div className="mt-[180px] flex h-[150px] w-[calc(100vw-32px)] overflow-hidden">
           <div className='flex flex-col justify-end'>
             <a
               href={props?.posts[imageIndex].uri}
