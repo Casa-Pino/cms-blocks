@@ -69,7 +69,7 @@ export default function BannerSlide(props: IBannerSlide) {
 
   return (
     <>
-      <div className={`${isMobile ? 'md:hidden' : 'hidden'} h-[450px] relative flex flex-col w-screen px-4 items-center justify-start overflow-hidden mt-8`}>
+      <div className={`${isMobile ? 'md:hidden' : 'hidden'} h-[450px] relative flex flex-col w-screen items-center justify-start overflow-hidden mt-8`}>
         <AnimatePresence initial={false} custom={direction}>
           <motion.div
             className=""
@@ -151,7 +151,7 @@ export default function BannerSlide(props: IBannerSlide) {
           >
             <div className="flex items-center w-[calc(100vw-16px)]">
               <div
-                className="absolute z-10 left-[8px] w-[calc(100vw-16px)] mt-[276px] flex flex-row justify-between"
+                className="absolute z-10 left-0 w-[100vw] mt-[276px] flex flex-row justify-between"
               >
                 <div
                   className="text-white bg-gray-500/50 rounded-full"
