@@ -37,7 +37,7 @@ export default function BannerSlide(props: IBannerSlide) {
   const [[page, direction], setPage] = useState([0, 0]);
   const imageIndex = wrap(0, props?.posts.length, page);
   const [duration, setDuration] = useState(0);
-  const [paused, setPaused] = useState(false);
+  const [paused, setPaused] = useState(true);
   const [isMoving, setIsMoving] = useState(false);
   const isMobile = props?.posts.some(x => !!x.mobileImage);
 
@@ -69,7 +69,7 @@ export default function BannerSlide(props: IBannerSlide) {
 
   return (
     <>
-      <div className={`${isMobile ? 'md:hidden' : 'hidden'} h-[450px] relative flex flex-col w-screen items-center justify-start overflow-hidden mt-8`}>
+      <div className={`${isMobile ? 'md:hidden' : 'hidden'} h-[330px] relative flex flex-col w-screen items-center justify-start overflow-hidden mt-8`}>
         <AnimatePresence initial={false} custom={direction}>
           <motion.div
             className=""
@@ -151,7 +151,7 @@ export default function BannerSlide(props: IBannerSlide) {
           >
             <div className="flex items-center w-[100vw]">
               <div
-                className="absolute z-10 left-0 w-[100vw] mt-[276px] flex flex-row justify-between"
+                className="absolute z-10 left-0 w-[100vw] mt-[156px] flex flex-row justify-between"
               >
                 <div
                   className="text-white bg-gray-500/50 rounded-full"
@@ -180,14 +180,14 @@ export default function BannerSlide(props: IBannerSlide) {
                 imageStaticUrl={props.staticUrl}
                 src={props?.posts[imageIndex].mobileImage || props?.posts[imageIndex].thumbnail || ''}
                 alt=""
-                width={640}
-                height={480}
-                className="absolute mt-[300px] h-[300px] left-0 w-full object-contain transition-all duration-700 rounded-md"
+                width={1080}
+                height={566}
+                className="absolute mt-[180px] h-[180px] left-0 w-full object-contain transition-all duration-700 rounded-md"
               ></ImageComponent>
             </div>
           </motion.div>
         </AnimatePresence>
-        <div className="mt-[300px] flex h-[150px] w-full overflow-hidden">
+        <div className="mt-[180px] flex h-[150px] w-full overflow-hidden">
           <div className='flex flex-col justify-end'>
             <a
               href={props?.posts[imageIndex].uri}
