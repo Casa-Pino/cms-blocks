@@ -151,7 +151,60 @@ const a = [
 export default function Home() {
   return (
     <div className="w-full max-w-[661px]">
-      <InstagramEmbed url="https://www.instagram.com/reel/DB7IHYwPfMf/"></InstagramEmbed>
+      <CarrouselSliderTop
+        items={[
+          {
+            link: '/vozes/voce-amanha/',
+            name: 'Allan Costa',
+            imageErrorUrl: '/assets/miniatura_compartilhamento.png',
+            imageUrl: 'https://cms-gazzconecta.s3.amazonaws.com/gazzconecta/2023/10/16160624/6.png',
+          },
+          {
+            link: '/vozes/smart-cities/',
+            name: 'Beto Marcelino',
+            imageErrorUrl: '/assets/miniatura_compartilhamento.png',
+            imageUrl: '/assets/partners/beto_marcelino.png',
+          },
+          {
+            link: '/vozes/jornadas-de-inovacao/',
+            name: 'Cris Alessi',
+            imageErrorUrl: '/assets/miniatura_compartilhamento.png',
+            imageUrl: 'https://cms-gazzconecta.s3.amazonaws.com/gazzconecta/2023/10/16160424/1.png',
+          },
+          {
+            link: '/vozes/joao-kepler/',
+            name: 'João Kepler',
+            imageErrorUrl: '/assets/miniatura_compartilhamento.png',
+            imageUrl:
+              'https://cms-gazzconecta.s3.amazonaws.com/gazzconecta/2024/08/20115013/Joao-Kepler-Coluna-GazzConecta-Divulgacao.png',
+          },
+          {
+            link: '/vozes/lideranca-e-influencia/',
+            name: 'Heloisa Garrett',
+            imageErrorUrl: '/assets/miniatura_compartilhamento.png',
+            imageUrl:
+              'https://cms-gazzconecta.s3.amazonaws.com/gazzconecta/2024/04/19160001/Design-sem-nome-2024-04-19T142806.323.png',
+          },
+          {
+            link: '/vozes/de-olho-no-futuro/',
+            name: 'Marcelo Gripa',
+            imageErrorUrl: '/assets/miniatura_compartilhamento.png',
+            imageUrl: 'https://cms-gazzconecta.s3.amazonaws.com/gazzconecta/2023/10/16160510/3.png',
+          },
+          {
+            link: '/vozes/trader-de-vendas/',
+            name: 'Rafael Mendes',
+            imageErrorUrl: '/assets/miniatura_compartilhamento.png',
+            imageUrl: 'https://cms-gazzconecta.s3.amazonaws.com/gazzconecta/2023/10/16160445/2.png',
+          },
+          {
+            link: '/vozes/cresca-todo-dia/',
+            name: 'Thiago Muniz',
+            imageErrorUrl: '/assets/miniatura_compartilhamento.png',
+            imageUrl: 'https://cms-gazzconecta.s3.amazonaws.com/gazzconecta/2023/10/16160543/4.png',
+          },
+        ]}
+      />
     </div>
   );
 }
