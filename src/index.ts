@@ -9,6 +9,7 @@ import DetailtsView from './Detailts';
 import CategoriesHeader from './CategoriesHeader';
 import BannerView from './BannerView';
 import Sponsors from './Sponsors';
+import SponsorsBasic from './SponsorsBasic';
 import BannerSlide from './BannerSlider';
 import CarrouselSliderTop from './CarrouselSliderTop';
 import TiktokEmbed from './TiktokEmbed';
@@ -29,5 +30,6 @@ export {
   BannerSlide,
   TiktokEmbed,
   CarrouselSliderTop,
-  InstagramEmbed
+  InstagramEmbed,
+  SponsorsBasic,
 };
