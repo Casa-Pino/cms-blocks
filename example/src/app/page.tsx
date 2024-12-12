@@ -1,6 +1,14 @@
 'use client';
 
-import { BannerSlide, CarrouselSliderTop, InstagramEmbed, LastNews, TiktokEmbed } from '../../../lib';
+import {
+  BannerSlide,
+  CarrouselSliderTop,
+  InstagramEmbed,
+  LastNews,
+  Sponsors,
+  SponsorsBasic,
+  TiktokEmbed,
+} from '../../../lib';
 // import CarrouselSliderTop from '../../../lib/CarrouselSliderTop';
 const a = [
   {
@@ -151,60 +159,33 @@ const a = [
 export default function Home() {
   return (
     <div className="w-full max-w-[661px]">
-      <CarrouselSliderTop
-        items={[
-          {
-            link: '/vozes/voce-amanha/',
-            name: 'Allan Costa',
-            imageErrorUrl: '/assets/miniatura_compartilhamento.png',
-            imageUrl: 'https://cms-gazzconecta.s3.amazonaws.com/gazzconecta/2023/10/16160624/6.png',
-          },
-          {
-            link: '/vozes/smart-cities/',
-            name: 'Beto Marcelino',
-            imageErrorUrl: '/assets/miniatura_compartilhamento.png',
-            imageUrl: '/assets/partners/beto_marcelino.png',
-          },
-          {
-            link: '/vozes/jornadas-de-inovacao/',
-            name: 'Cris Alessi',
-            imageErrorUrl: '/assets/miniatura_compartilhamento.png',
-            imageUrl: 'https://cms-gazzconecta.s3.amazonaws.com/gazzconecta/2023/10/16160424/1.png',
-          },
-          {
-            link: '/vozes/joao-kepler/',
-            name: 'João Kepler',
-            imageErrorUrl: '/assets/miniatura_compartilhamento.png',
-            imageUrl:
-              'https://cms-gazzconecta.s3.amazonaws.com/gazzconecta/2024/08/20115013/Joao-Kepler-Coluna-GazzConecta-Divulgacao.png',
-          },
-          {
-            link: '/vozes/lideranca-e-influencia/',
-            name: 'Heloisa Garrett',
-            imageErrorUrl: '/assets/miniatura_compartilhamento.png',
-            imageUrl:
-              'https://cms-gazzconecta.s3.amazonaws.com/gazzconecta/2024/04/19160001/Design-sem-nome-2024-04-19T142806.323.png',
-          },
-          {
-            link: '/vozes/de-olho-no-futuro/',
-            name: 'Marcelo Gripa',
-            imageErrorUrl: '/assets/miniatura_compartilhamento.png',
-            imageUrl: 'https://cms-gazzconecta.s3.amazonaws.com/gazzconecta/2023/10/16160510/3.png',
-          },
-          {
-            link: '/vozes/trader-de-vendas/',
-            name: 'Rafael Mendes',
-            imageErrorUrl: '/assets/miniatura_compartilhamento.png',
-            imageUrl: 'https://cms-gazzconecta.s3.amazonaws.com/gazzconecta/2023/10/16160445/2.png',
-          },
-          {
-            link: '/vozes/cresca-todo-dia/',
-            name: 'Thiago Muniz',
-            imageErrorUrl: '/assets/miniatura_compartilhamento.png',
-            imageUrl: 'https://cms-gazzconecta.s3.amazonaws.com/gazzconecta/2023/10/16160543/4.png',
-          },
-        ]}
-      />
+      <SponsorsBasic
+        errorImage="awdawd"
+        {...{
+          color: '#ff6900',
+          backgroundColor: '#00d084',
+          sponsors: [
+            {
+              id: 1733840444144,
+              name: 'teste1',
+              url: 'https://www.google.com.br',
+              image: 'https://cms-gazzconecta.s3.amazonaws.com/gazzconecta/2024/12/06184948/alan-mareines.png',
+            },
+            {
+              id: 1733840446692,
+              name: 'teste2',
+              url: 'https://www.youtube.com.br',
+              image: 'https://cms-gazzconecta.s3.amazonaws.com/gazzconecta/2024/12/09144131/big-data-evento-CAPA.png',
+            },
+            {
+              id: 1733840448653,
+              name: 'teste3',
+              url: 'http://gazzconecta.com.br',
+              image: 'https://cms-gazzconecta.s3.amazonaws.com/gazzconecta/2024/12/09170516/market4u-CAPA.png',
+            },
+          ],
+        }}
+      ></SponsorsBasic>
     </div>
   );
 }

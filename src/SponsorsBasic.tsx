@@ -1,3 +1,5 @@
+'use client';
+
 import ImageComponent from './Image';
 import classNames from 'classnames';
 
@@ -15,7 +17,7 @@ interface ISponsor {
   errorImage?: string;
 }
 
-export default async function SponsorsBasic({
+export default function SponsorsBasic({
   sponsors,
   color,
   backgroundColor,
@@ -27,12 +29,11 @@ export default async function SponsorsBasic({
     <div className={classNames('relative my-4', classData)}>
       <p className="relative -bottom-4 mx-4 text-[27px] font-medium ">Parceiros</p>
       <div
-        className={`flex h-auto min-h-[170px] w-full flex-wrap justify-around rounded-[5px] ${
-          !!backgroundColor ? `bg-[${backgroundColor}]` : 'bg-[#E9E9E9]'
-        } py-4 md:min-h-[189px]`}
+        className={`flex h-auto min-h-[170px] w-full flex-wrap justify-around rounded-[5px]  py-4 md:min-h-[189px]`}
         style={{
           columnGap: '6px',
           rowGap: '6px',
+          backgroundColor: !!backgroundColor ? backgroundColor : '#E9E9E9',
         }}
       >
         {sponsors.map((x, y: number) => {
