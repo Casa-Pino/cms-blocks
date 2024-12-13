@@ -183,6 +183,56 @@ export default function Home() {
               url: 'http://gazzconecta.com.br',
               image: 'https://cms-gazzconecta.s3.amazonaws.com/gazzconecta/2024/12/09170516/market4u-CAPA.png',
             },
+            {
+              id: 1734035157026,
+              name: 'teste4',
+              url: null,
+              image: null,
+            },
+            {
+              id: 1734035176828,
+              name: 'teste11',
+              url: null,
+              image: 'https://cms-gazzconecta.s3.amazonaws.com/gazzconecta/2024/12/11140724/parana-inovador-HOME.png',
+            },
+            {
+              id: 1734035160432,
+              name: 'teste5',
+              url: null,
+              image: 'https://cms-gazzconecta.s3.amazonaws.com/gazzconecta/2024/12/12152547/gemeo-digital-HOME.png',
+            },
+            {
+              id: 1734035163278,
+              name: 'teste6',
+              url: null,
+              image: 'https://cms-gazzconecta.s3.amazonaws.com/gazzconecta/2024/12/12150817/whats-home.png',
+            },
+            {
+              id: 1734035165614,
+              name: 'teste7',
+              url: null,
+              image: 'https://cms-gazzconecta.s3.amazonaws.com/gazzconecta/2024/12/12150812/whats-CAPA.png',
+            },
+            {
+              id: 1734035168418,
+              name: 'teste8',
+              url: null,
+              image: 'https://cms-gazzconecta.s3.amazonaws.com/gazzconecta/2024/12/12150042/guilherme-rainner.png',
+            },
+            {
+              id: 1734035171060,
+              name: 'teste9',
+              url: null,
+              image:
+                'https://cms-gazzconecta.s3.amazonaws.com/gazzconecta/2024/12/12114250/gemini__hero_16-9-%402x-scaled.jpg',
+            },
+            {
+              id: 1734035174011,
+              name: 'teste10',
+              url: null,
+              image:
+                'https://cms-gazzconecta.s3.amazonaws.com/gazzconecta/2024/12/12102721/Erica-Marques-Google-Divulgacao-HOME-1.png',
+            },
           ],
         }}
       ></SponsorsBasic>

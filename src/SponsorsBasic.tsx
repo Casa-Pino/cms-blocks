@@ -4,13 +4,13 @@ import ImageComponent from './Image';
 import classNames from 'classnames';
 
 interface ISponsor {
-  color: string;
-  backgroundColor: string;
+  color?: string;
+  backgroundColor?: string;
   sponsors: Array<{
-    id: number;
-    name: string;
-    url: string;
-    image: string;
+    id?: number;
+    name?: string;
+    url?: string;
+    image?: string;
   }>;
   classData?: string;
   imageStaticUrl?: string;
@@ -39,13 +39,13 @@ export default function SponsorsBasic({
         {sponsors.map((x, y: number) => {
           return (
             <div className="flex w-[109px] flex-col items-center justify-around" key={y}>
-              <a href={x?.url} target="_blank" rel="noopener noreferrer">
+              <a href={x?.url || null} target="_blank" rel="noopener noreferrer">
                 <div className="relative h-[94px] min-h-[94px] w-[94px] rounded-full bg-white object-cover">
                   <ImageComponent
                     className=" rounded-full"
-                    src={x?.image}
+                    src={x?.image || ''}
                     fill
-                    alt={x?.name}
+                    alt={x?.name || ''}
                     style={{
                       objectFit: 'cover',
                       width: '100%',
