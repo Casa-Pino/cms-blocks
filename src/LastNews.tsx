@@ -418,7 +418,7 @@ export function PostCard({
                   style={{
                     color: textColor ?? '',
                   }}
-                  dangerouslySetInnerHTML={{ __html: postData.title.replace(/&nbsp;/gi, ' ') }}
+                  dangerouslySetInnerHTML={{ __html: postData?.title?.replace(/&nbsp;/gi, ' ') }}
                 ></div>
 
                 {postData?.excerpt && (
