@@ -149,7 +149,7 @@ export default function NewsLetterView({
         </div>
       ) : (
         <form
-          onSubmit={async (x) => {
+          onSubmit={async (x: any) => {
             x.preventDefault();
             await sendData(new FormData(x.currentTarget));
           }}
@@ -164,9 +164,13 @@ export default function NewsLetterView({
             ).map((x) => (
               <input
                 key={x.name}
+                style={{
+                  display: x.type == 'hidden' ? 'none' : 'block',
+                }}
                 className="my-3 h-11 w-full rounded bg-white p-2 text-black"
                 type={['text', 'password', 'number', 'date', 'time'].includes(x.type) ? x.type : 'text'}
                 name={x.name}
+                value={x.type == 'hidden' ? x.default : null}
                 onChange={(e) => (e.target.value = mask.set(x.name, e.target.value))}
                 placeholder={x.default}
               ></input>
