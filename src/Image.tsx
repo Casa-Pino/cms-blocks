@@ -23,7 +23,7 @@ const ImageComponent = (props: IImageProps): React.ReactElement<IImageProps> => 
                 ? props.imageStaticUrl.endsWith('/')
                   ? props.imageStaticUrl.slice(0, -1)
                   : props.imageStaticUrl
-                : 'https://static.pinolab.com.br'
+                : 'https://resize.casapino.com.br/'
             }/?${src != null ? `u=${src}&` : ''}${!!props.imageSizeH ? 'h' : 'w'}=${
               !!props.imageSizeH
                 ? props.imageSizeH.toString()
