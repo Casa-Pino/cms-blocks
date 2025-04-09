@@ -39,7 +39,7 @@ export default function BannerSlide(props: IBannerSlide) {
   const [duration, setDuration] = useState(0);
   const [paused, setPaused] = useState(false);
   const [isMoving, setIsMoving] = useState(false);
-  const isMobile = props?.posts.some(x => !!x.mobileImage);
+  const isMobile = props?.posts.some((x) => !!x.mobileImage);
 
   useEffect(() => {
     let timerId;
@@ -69,7 +69,11 @@ export default function BannerSlide(props: IBannerSlide) {
 
   return (
     <>
-      <div className={`${isMobile ? 'md:hidden' : 'hidden'} h-[330px] relative flex flex-col w-screen items-center justify-start overflow-hidden mt-8`}>
+      <div
+        className={`${
+          isMobile ? 'md:hidden' : 'hidden'
+        } relative mt-8 flex h-auto w-screen flex-col items-center justify-start overflow-hidden sm:h-[330px]`}
+      >
         <AnimatePresence initial={false} custom={direction}>
           <motion.div
             className=""
@@ -149,30 +153,34 @@ export default function BannerSlide(props: IBannerSlide) {
               e.target.style.cursor = 'pointer';
             }}
           >
-            <div className="flex items-center w-[calc(100vw-32px)]">
-              <div
-                className="absolute z-10 left-0 w-[calc(100vw-32px)] mt-[156px] flex flex-row justify-between"
-              >
+            <div className="flex w-[calc(100vw-32px)] items-center">
+              <div className="absolute left-0 z-10 mt-[156px] flex w-full flex-row justify-between">
                 <div
-                  className="text-white bg-gray-500/50 rounded-full"
+                  className="rounded-full bg-gray-500/50 text-white"
                   onClick={() => {
                     paginate(-1);
                     setDuration(0);
                   }}
                 >
                   <svg width="48" height="48" viewBox="0 0 20 20">
-                    <path fill="currentColor" d="M8.388,10.049l4.76-4.873c0.303-0.31,0.297-0.804-0.012-1.105c-0.309-0.304-0.803-0.293-1.105,0.012L6.726,9.516c-0.303,0.31-0.296,0.805,0.012,1.105l5.433,5.307c0.152,0.148,0.35,0.223,0.547,0.223c0.203,0,0.406-0.08,0.559-0.236c0.303-0.309,0.295-0.803-0.012-1.104L8.388,10.049z"></path>
+                    <path
+                      fill="currentColor"
+                      d="M8.388,10.049l4.76-4.873c0.303-0.31,0.297-0.804-0.012-1.105c-0.309-0.304-0.803-0.293-1.105,0.012L6.726,9.516c-0.303,0.31-0.296,0.805,0.012,1.105l5.433,5.307c0.152,0.148,0.35,0.223,0.547,0.223c0.203,0,0.406-0.08,0.559-0.236c0.303-0.309,0.295-0.803-0.012-1.104L8.388,10.049z"
+                    ></path>
                   </svg>
                 </div>
                 <div
-                  className="text-white bg-gray-500/50 rounded-full"
+                  className="rounded-full bg-gray-500/50 text-white"
                   onClick={() => {
                     paginate(1);
                     setDuration(0);
                   }}
                 >
                   <svg width="48" height="48" viewBox="0 0 20 20">
-                    <path fill="currentColor" d="M11.611,10.049l-4.76-4.873c-0.303-0.31-0.297-0.804,0.012-1.105c0.309-0.304,0.803-0.293,1.105,0.012l5.306,5.433c0.304,0.31,0.296,0.805-0.012,1.105L7.83,15.928c-0.152,0.148-0.35,0.223-0.547,0.223c-0.203,0-0.406-0.08-0.559-0.236c-0.303-0.309-0.295-0.803,0.012-1.104L11.611,10.049z"></path>
+                    <path
+                      fill="currentColor"
+                      d="M11.611,10.049l-4.76-4.873c-0.303-0.31-0.297-0.804,0.012-1.105c0.309-0.304,0.803-0.293,1.105,0.012l5.306,5.433c0.304,0.31,0.296,0.805-0.012,1.105L7.83,15.928c-0.152,0.148-0.35,0.223-0.547,0.223c-0.203,0-0.406-0.08-0.559-0.236c-0.303-0.309-0.295-0.803,0.012-1.104L11.611,10.049z"
+                    ></path>
                   </svg>
                 </div>
               </div>
@@ -182,23 +190,19 @@ export default function BannerSlide(props: IBannerSlide) {
                 alt=""
                 width={1080}
                 height={566}
-                className="absolute mt-[180px] h-[180px] left-0 w-[calc(100vw-32px)] object-contain transition-all duration-700 rounded-md"
+                className="absolute left-0 mt-[180px] h-[180px] w-full rounded-md object-contain transition-all duration-700"
               ></ImageComponent>
             </div>
           </motion.div>
         </AnimatePresence>
-        <div className="mt-[180px] flex h-[150px] w-[calc(100vw-32px)] overflow-hidden">
-          <div className='flex flex-col justify-end'>
-            <a
-              href={props?.posts[imageIndex].uri}
-            >
+        <div className="mt-[180px] flex h-auto w-[calc(100vw-32px)] overflow-hidden">
+          <div className="flex flex-col justify-end">
+            <a href={props?.posts[imageIndex].uri}>
               <span className="text-sm font-light text-black">{props?.posts[imageIndex].category}</span>
             </a>
             <div className="my-2"></div>
-            <a
-              href={props?.posts[imageIndex].uri}
-            >
-              <span className='flex-1 text-xl font-semibold  text-gray-900'>{props?.posts[imageIndex].title}</span>
+            <a href={props?.posts[imageIndex].uri}>
+              <span className="flex-1 text-xl font-semibold  text-gray-900">{props?.posts[imageIndex].title}</span>
             </a>
             <div className="my-2"></div>
             <div style={{ width: 'calc(100vw - 32px)' }} className="flex justify-center gap-2">
@@ -231,7 +235,7 @@ export default function BannerSlide(props: IBannerSlide) {
                 </div>
               ))}
             </div>
-            <div className="hidden md:flex flex gap-2">
+            <div className="flex gap-2 md:flex">
               {props?.posts.map((x, i) => (
                 <div
                   className="flex overflow-hidden transition-all"
@@ -264,7 +268,11 @@ export default function BannerSlide(props: IBannerSlide) {
           </div>
         </div>
       </div>
-      <div className={`${isMobile ? 'hidden md:flex ' : ''}click-tm group relative flex h-screen max-h-[600px] w-full cursor-pointer items-center justify-center overflow-hidden rounded-xl`}>
+      <div
+        className={`${
+          isMobile ? 'hidden md:flex ' : ''
+        }click-tm group relative flex h-screen max-h-[600px] w-full cursor-pointer items-center justify-center overflow-hidden rounded-xl`}
+      >
         <AnimatePresence initial={false} custom={direction}>
           <motion.div
             className=" absolute top-0 left-0 right-0 h-full w-full"
