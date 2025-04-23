@@ -14,6 +14,7 @@ import BannerSlide from './BannerSlider';
 import CarrouselSliderTop from './CarrouselSliderTop';
 import TiktokEmbed from './TiktokEmbed';
 import InstagramEmbed from './InstagramEmbed';
+import BannerSliderSwitcher from './BannerSliderSwitcher';
 
 export {
   EnquenteView,
@@ -32,4 +33,5 @@ export {
   CarrouselSliderTop,
   InstagramEmbed,
   SponsorsBasic,
+  BannerSliderSwitcher,
 };
